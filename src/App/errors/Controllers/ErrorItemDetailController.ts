@@ -2,7 +2,7 @@ import { UIController, UIScene, Text, VStack, cTopLeading, HStack, Icon, Spacer,
 import { TitleText } from '../../Views/TitleText';
 import { ErrorMonitorBrokerClient } from '../../../Services/ErrorMonitorBrokerClient';
 import { Views } from '../../Views/Views';
-import { AreaSerie, BarSerie, ChartView } from '@tuval/components-charts';
+import { AreaSerie, BarSerie, ChartView } from '@realmocean/charts';
 
 
 

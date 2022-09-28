@@ -1,7 +1,7 @@
 import { UIController, UIScene, Text, VStack, cTopLeading, HStack, Icon, Spacer, State, ZStack, PositionTypes, Spinner, ScrollView, cVertical } from '@tuval/forms';
 
 import { DashboardTileBox } from '../Views/DashboardTileView';
-import { TvChart, ChartView, AreaSerie, MyControlBody } from '@tuval/components-charts';
+import { TvChart, ChartView, AreaSerie, MyControlBody } from '@realmocean/charts';
 import { ErrorMonitorBrokerClient } from '../../../Services/ErrorMonitorBrokerClient';
 import { DashboardTopErrorsTileBox } from '../Views/DashboardTopErrorsTileBox';
 import { TitleText } from '../../Views/TitleText';
