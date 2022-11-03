@@ -10,8 +10,10 @@ if (shell.exec('npm run wbuild').code !== 0) {
     shell.exit(1);
 }
 
-shell.echo('Getting appstore info from realm docker container');
-shell.exec(`docker cp ${container_name}:/server/portal/static/appstore.json  ../../realm/appstore.json`)
+if (container_name) {
+    shell.echo('Getting appstore info from realm docker container');
+    shell.exec(`docker cp ${container_name}:/server/portal/static/appstore.json  ../../realm/appstore.json`)
+}
 
 
 shell.echo('App file creating...');
@@ -19,14 +21,14 @@ shell.echo('App file creating...');
 if (container_name) {
     tuval.appPackager('./dist/index.js', `./dist/${appName}.app`);
 } else {
-    tuval.appPackager('./dist/index.js', `../../../pythonProjects/bpmgenesis/src/portal/static/applications/${manifest.application.name}.app`);
+    tuval.appPackager('./dist/index.js', `../realm-runtime/src/portal/static/applications/${manifest.application.name}.app`);
 }
 
 shell.echo('App store info updating...');
 const path = require('path');
 const fs = require('fs');
 // const a = fs.readFileSync('./appstore.json', 'utf8');
-const a = fs.readFileSync('../../../pythonProjects/bpmgenesis/src/portal/static/appstore.json', 'utf8');
+const a = fs.readFileSync('../realm-runtime/src/portal/static/appstore.json', 'utf8');
 
 const appStoreInfo = JSON.parse(a);
 const result = appStoreInfo.apps.find(item => item.id === appName);
@@ -40,7 +42,7 @@ if (result) {
 const aa = JSON.stringify(appStoreInfo);
 
 // fs.writeFileSync('.//appstore.json', aa, 'utf8');
-fs.writeFileSync('../../../pythonProjects/bpmgenesis/src/portal/static/appstore.json', aa, 'utf8');
+fs.writeFileSync('../realm-runtime/src/portal/static/appstore.json', aa, 'utf8');
 shell.echo('App info done.');
 
 if (container_name) {
